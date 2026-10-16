@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: 깃허브아이디/저장소이름   # 예: onepick/onepick-site  (README 3번 참고)
+  repo: onepickmath2026-hub/onepick-site
   branch: main
 
 locale: ko
