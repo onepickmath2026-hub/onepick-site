@@ -1,0 +1,41 @@
+backend:
+  name: github
+  repo: 깃허브아이디/저장소이름   # 예: onepick/onepick-site  (README 3번 참고)
+  branch: main
+
+locale: ko
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: columns
+    label: 칼럼
+    label_singular: 칼럼 글
+    folder: content/columns
+    create: true
+    format: json
+    extension: json
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}"
+    summary: "{{date}} · {{title}}"
+    sortable_fields: ["date"]
+    fields:
+      - { label: 분류, name: cat, widget: string, required: false, hint: "예: 중등 수학 · 오답 관리" }
+      - { label: 제목, name: title, widget: string }
+      - { label: 날짜, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: 요약, name: sum, widget: text, required: false, hint: "목록에 보이는 두 줄. 비우면 본문 앞부분이 들어갑니다." }
+      - { label: 내용, name: body, widget: text }
+
+  - name: pages
+    label: 학원 소개 사진
+    files:
+      - label: 학원 소개 사진
+        name: about
+        file: content/about.json
+        format: json
+        fields:
+          - label: 사진 목록
+            name: photos
+            widget: list
+            fields:
+              - { label: 사진, name: image, widget: image }
+              - { label: 설명, name: cap, widget: string, required: false }
