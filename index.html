@@ -110,6 +110,7 @@ nav a{font-weight:700}
 #colList{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:16px;align-items:start;margin-top:36px}
 .cs{margin:10px 0 0;color:var(--mut);font-size:14.5px}
 .post summary small:not(.ck){display:block;margin-top:14px;font-weight:700}
+.post{display:block}.post b{display:block;font-size:18px;margin:4px 0}.post small{color:var(--mut);font-size:13px}.post small.ck{display:block;color:var(--m);font-weight:800;font-size:12.5px}.post small.dt{display:block;margin-top:14px;font-weight:700}.post .more{display:inline-block;margin-top:12px;color:var(--m);font-weight:800;font-size:14px;text-decoration:underline;text-underline-offset:3px}
 .btn{background:linear-gradient(135deg,var(--m2),var(--m));box-shadow:0 8px 20px rgba(23,143,130,.22)}
 .btn.o{background:#fff;color:var(--tx);border:1px solid var(--bd);box-shadow:none}
 .eyebrow{display:inline-block;background:var(--ms);padding:5px 12px;border-radius:999px}
@@ -354,13 +355,13 @@ function render(){
  var list=document.getElementById('colList');list.textContent='';
  if(!DATA.posts.length){list.appendChild(el('p','note','곧 첫 칼럼이 올라옵니다.'))}
  DATA.posts.forEach(function(x){
-  var d=el('details','card post'),s=document.createElement('summary');
-  s.appendChild(el('small','ck',x.cat||''));s.appendChild(el('b','',x.title||''));
-  var body=x.body||'',html=mdToHtml(body),tmp=document.createElement('div');tmp.innerHTML=html;
-  s.appendChild(el('p','cs',x.sum||(tmp.textContent.replace(/\s+/g,' ').trim().slice(0,80)+'…')));
-  s.appendChild(el('small','','원픽학원 원장 · '+String(x.date||'').slice(0,10)));
-  var pb=el('div','pb rich');pb.innerHTML=html;
-  d.appendChild(s);d.appendChild(pb);list.appendChild(d)});
+  var a=el('a','card post');a.href='/columns/'+(x.slug||x.id)+'.html';
+  a.appendChild(el('small','ck',x.cat||''));a.appendChild(el('b','',x.title||''));
+  var tmp=document.createElement('div');tmp.innerHTML=mdToHtml(x.body||'');
+  a.appendChild(el('p','cs',x.sum||(tmp.textContent.replace(/\s+/g,' ').trim().slice(0,80)+'…')));
+  a.appendChild(el('small','dt','원픽학원 원장 · '+String(x.date||'').slice(0,10)));
+  a.appendChild(el('span','more','더 읽기 →'));
+  list.appendChild(a)});
  var ph=document.getElementById('abPhotos');ph.textContent='';
  ((DATA.about&&DATA.about.photos)||[]).forEach(function(x){var f=el('figure','pf'),im=document.createElement('img');im.src=x.image;im.alt=x.cap||'원픽학원 사진';im.loading='lazy';f.appendChild(im);if(x.cap)f.appendChild(el('figcaption','',x.cap));ph.appendChild(f)})}
 fetch('site-data.json').then(function(r){return r.json()}).then(function(d){DATA=d;render()}).catch(function(){render()});
