@@ -23,8 +23,7 @@ collections:
       - { label: 제목, name: title, widget: string }
       - { label: 날짜, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
       - { label: 요약, name: sum, widget: text, required: false, hint: "목록에 보이는 두 줄. 비우면 본문 앞부분이 들어갑니다." }
-      - { label: 내용, name: body, widget: text }
-
+      - { label: 내용, name: body, widget: markdown, buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list], editor_components: [image], modes: [rich_text, raw] }
   - name: pages
     label: 학원 소개 사진
     files:
