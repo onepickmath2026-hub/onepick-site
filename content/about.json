@@ -1,1 +1,15 @@
-{"photos":[{"image":"/images/uploads/academy-front.jpg","cap":"원픽학원 입구 안내데스크"},{"image":"/images/uploads/counsel-room.jpg","cap":"상담실"}]}
+{
+  "photos": [
+    {
+      "image": "/images/uploads/academy-front.jpg",
+      "cap": "원픽학원 입구 안내데스크"
+    },
+    {
+      "image": "/images/uploads/counsel-room.jpg",
+      "cap": "상담실"
+    },
+    {
+      "image": "/images/uploads/academy-front.jpg"
+    }
+  ]
+}
